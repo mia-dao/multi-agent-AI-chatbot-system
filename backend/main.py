@@ -13,10 +13,21 @@ load_dotenv()
 
 app = FastAPI(title="Multi-Agent Chatbot API")
 
-# CORS middleware
+# CORS middleware - Configure for production
+allowed_origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    # Add your Netlify URL here after deployment
+    os.getenv("FRONTEND_URL", ""),
+]
+
+# In production, allow all origins or specify your Netlify domain
+if os.getenv("ENVIRONMENT") == "production":
+    allowed_origins = ["*"]  # Or specify your exact Netlify domain
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -40,7 +51,11 @@ class ChatResponse(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "Multi-Agent Chatbot API", "status": "running"}
+    return {
+        "message": "Multi-Agent Chatbot API",
+        "status": "running",
+        "version": "1.0.0"
+    }
 
 
 @app.post("/chat", response_model=ChatResponse)
@@ -64,15 +79,16 @@ async def chat(request: ChatRequest):
         )
     
     except Exception as e:
-        print(f"Workflow error: {e}") ;
+        print(f"Error processing request: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
 
 
 @app.get("/health")
 async def health():
-    return {"status": "healthy"}
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
