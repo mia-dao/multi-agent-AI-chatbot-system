@@ -1,6 +1,6 @@
 Hi There!
 
-This is my personal LangGraph Multi-Agent Chatbot project — built to explore how specialized AI agents can work together to understand, respond, and refine conversations in real time. 
+This is my personal LangGraph Multi-Agent Chatbot project — built to explore how specialized AI agents can work together to understand, respond, and refine conversations in real time. There's no live demo yet, but to all my code slingers out there, feel free to fork the repo and give it a spin yourself!
 
 🎯 Project Overview
 Backend (LangGraph Multi-Agent System)
