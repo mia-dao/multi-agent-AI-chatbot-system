@@ -22,12 +22,12 @@ Real-time chat interface
 Metadata display (intent, confidence, quality scores)
 Responsive design for mobile and desktop
 
-🎨 Key Features
-✅ Multi-agent orchestration with LangGraph
-✅ Intent classification and understanding
-✅ Quality assurance with automatic refinement
-✅ Apple-inspired UI with smooth animations
-✅ Real-time chat with typing indicators
-✅ Metadata display for transparency
-✅ Responsive design
-✅ Error handling and loading states
+🎨 Key Features:
+- Multi-agent orchestration with LangGraph
+- Intent classification and understanding
+- Quality assurance with automatic refinement
+- Apple-inspired UI with smooth animations
+- Real-time chat with typing indicators
+- Metadata display for transparency
+- Responsive design
+- Error handling and loading states
